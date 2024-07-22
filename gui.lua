@@ -3,7 +3,7 @@
 
 ]]
 
-include("lib/kbm.lua")
+include("gui/kbm.lua")
 
 Gui = {}
 Gui.__index = Gui
