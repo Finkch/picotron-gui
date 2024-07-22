@@ -140,7 +140,7 @@ function Container:update_contents(gui)          -- updates content
     if (self.contents) self.contents:update(gui)
 end
 
--- must be ovveridden
+-- can be overidden
 function Container:update_active(gui) self.active = true end
 
 -- deactivates if gui is in wrong mode
