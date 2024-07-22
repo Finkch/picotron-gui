@@ -1,6 +1,7 @@
 # picotron-gui
 
 A library to help create a gui in the Picotron fantasy workstation.  
+Requires an external library called `lib` with `vec.lua` and `kbm.lua`. Both of these are available in the [necrodancer](https://github.com/Finkch/picotron-necrodancer) repository.
 
 
 ## gui.lua
@@ -41,10 +42,3 @@ LabelBrain objects are a special brain to easily allow Labels to give data reado
 ### other ways of giving containers functionality
 
 Brains allow easy functionality that is able to reference the data within a container. If container data is not needed, then containers have many abstract update methods that can be overridden. A few of these are listed in [more on container](#more-on-containers).  
-
-
-## other files
-
-There are two other files present in this library: `vec.lua` and `kmb.lua`. These better fit into an external library directory, but they are included within this library so no dependencies had to be imported.  
-`vec.lua` is a class for a 2D vector. This library was created before I realised vectors were supported through userdata.  
-`kmb.lua` is used to track user-inputs. While `kmb.lua` can handle both keyboard and mouse, only the mouse portion is used by necrodancer. It is used to detect things like mouse click events on buttons and sliders.  
