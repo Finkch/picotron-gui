@@ -9,7 +9,7 @@ Gui = {}
 Gui.__index = Gui
 Gui.__type = "gui"
 
-function Gui:new(name, resizable, locked, width, height, minwidth, minheight, cls, kbm)
+function Gui:new(name, resizable, locked, fullscreen, width, height, minwidth, minheight, cls, kbm)
 
     kbm = kbm or KBM:new({"lmb"})
 
@@ -17,6 +17,7 @@ function Gui:new(name, resizable, locked, width, height, minwidth, minheight, cl
         name = name,
         resizable = resizable,  -- can window dimensions be changed
         locked = locked,        -- can window clip offscreen
+        fullscreen = fullscreen -- is currently fullscreen
 
         width = width,          -- window dimensions
         height = height,
@@ -67,14 +68,17 @@ function Gui:update()
     -- updates keyboard and mouse
     self.kbm:update()
 
-    -- ensures current dimensions are not too small
-    self.width = max(get_display():width(), self.minwidth)
-    self.height = max(get_display():height(), self.minheight)
 
-    window({
-        width = self.width,
-        height = self.height
-    })
+    -- ensures current dimensions are not too small
+    if not self.fullscreen then
+        self.width = max(get_display():width(), self.minwidth)
+        self.height = max(get_display():height(), self.minheight)
+
+        window({
+            width = self.width,
+            height = self.height
+        })
+    end
 
     -- updates containers, for those that need it
     for container in all(self.containers) do
@@ -86,6 +90,20 @@ function Gui:update()
         brain:update(self)
     end
 
+end
+
+-- toggles between fullscreen or not
+function Gui:fullscreen()
+    if self.fullscreen then
+        window({
+            width = self.width,
+            height = self.height
+        })
+    else
+        window()
+    end
+
+    self.fullscreen = not self.fullscreen
 end
 
 -- draws
