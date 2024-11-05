@@ -9,10 +9,14 @@ Gui = {}
 Gui.__index = Gui
 Gui.__type = "gui"
 
-function Gui:new(name, resizable, width, height, minwidth, minheight, cls)
+function Gui:new(name, resizable, locked, width, height, minwidth, minheight, cls, kbm)
+
+    kbm = kbm or KBM:new({"lmb"})
+
     local g = {
         name = name,
-        resizable = resizable,
+        resizable = resizable,  -- can window dimensions be changed
+        locked = locked,        -- can window clip offscreen
 
         width = width,          -- window dimensions
         height = height,
