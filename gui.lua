@@ -17,7 +17,7 @@ function Gui:new(name, resizable, locked, fullscreen, width, height, minwidth, m
         name = name,
         resizable = resizable,  -- can window dimensions be changed
         locked = locked,        -- can window clip offscreen
-        fullscreen = fullscreen -- is currently fullscreen
+        fullscreen = fullscreen,-- is currently fullscreen
 
         width = width,          -- window dimensions
         height = height,
